@@ -1,3 +1,4 @@
+
 @import "tailwindcss" source(none);
 @source "../src";
 @import "tw-animate-css";
@@ -41,17 +42,17 @@
 :root {
   --radius: 1rem;
   --background: oklch(1 0 0);
-  --foreground: oklch(0.29 0.06 260);          /* #172B4D */
+  --foreground: oklch(0.29 0.06 260);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.29 0.06 260);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.29 0.06 260);
-  --navy: oklch(0.3 0.13 262);                 /* #082D69 */
+  --navy: oklch(0.3 0.13 262);
   --navy-foreground: oklch(0.98 0.01 250);
-  --primary: oklch(0.74 0.18 58);              /* #FF8A00 */
+  --primary: oklch(0.74 0.18 58);
   --primary-foreground: oklch(1 0 0);
-  --sky: oklch(0.68 0.15 235);                 /* #20A8EF */
-  --secondary: oklch(0.975 0.012 245);         /* #F1F7FD */
+  --sky: oklch(0.68 0.15 235);
+  --secondary: oklch(0.975 0.012 245);
   --secondary-foreground: oklch(0.3 0.13 262);
   --muted: oklch(0.975 0.012 245);
   --muted-foreground: oklch(0.5 0.04 258);
@@ -63,61 +64,240 @@
   --border: oklch(0.92 0.015 250);
   --input: oklch(0.92 0.015 250);
   --ring: oklch(0.74 0.18 58);
-  --gradient-hero: linear-gradient(105deg, color-mix(in oklab, var(--navy) 88%, transparent) 0%, color-mix(in oklab, var(--navy) 55%, transparent) 50%, color-mix(in oklab, var(--navy) 15%, transparent) 100%);
-  --gradient-brand: linear-gradient(135deg, var(--primary), oklch(0.8 0.16 75));
-  --shadow-card: 0 20px 50px -20px color-mix(in oklab, var(--navy) 35%, transparent);
-  --shadow-glow: 0 15px 40px -10px color-mix(in oklab, var(--primary) 55%, transparent);
+
+  --gradient-hero: linear-gradient(
+    105deg,
+    color-mix(in oklab, var(--navy) 88%, transparent) 0%,
+    color-mix(in oklab, var(--navy) 55%, transparent) 50%,
+    color-mix(in oklab, var(--navy) 15%, transparent) 100%
+  );
+
+  --gradient-brand: linear-gradient(
+    135deg,
+    var(--primary),
+    oklch(0.8 0.16 75)
+  );
+
+  --shadow-card: 0 20px 50px -20px
+    color-mix(in oklab, var(--navy) 35%, transparent);
+
+  --shadow-glow: 0 15px 40px -10px
+    color-mix(in oklab, var(--primary) 55%, transparent);
 }
 
 @layer base {
-  * { border-color: var(--color-border); }
-  html { scroll-behavior: smooth; }
-  body { background-color: var(--color-background); color: var(--color-foreground); font-family: var(--font-sans); }
-  h1, h2, h3, h4 { font-family: var(--font-display); color: var(--color-navy); letter-spacing: -0.02em; }
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    color: var(--color-navy);
+    letter-spacing: -0.02em;
+  }
 }
 
 @utility btn-brand {
-  display: inline-flex; align-items: center; gap: .5rem; border-radius: 9999px;
-  padding: .85rem 1.6rem; font-weight: 700; color: var(--primary-foreground);
-  background: var(--gradient-brand); box-shadow: var(--shadow-glow);
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  border-radius: 9999px;
+  padding: .85rem 1.6rem;
+  font-weight: 700;
+  color: var(--primary-foreground);
+  background: var(--gradient-brand);
+  box-shadow: var(--shadow-glow);
   transition: transform .25s, box-shadow .25s;
-  &:hover { transform: translateY(-2px) scale(1.02); }
+
+  &:hover {
+    transform: translateY(-2px) scale(1.02);
+  }
 }
+
 @utility btn-whatsapp {
-  display: inline-flex; align-items: center; gap: .5rem; border-radius: 9999px;
-  padding: .85rem 1.6rem; font-weight: 700; color: var(--primary-foreground);
-  background: var(--whatsapp); transition: transform .25s;
-  &:hover { transform: translateY(-2px); }
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  border-radius: 9999px;
+  padding: .85rem 1.6rem;
+  font-weight: 700;
+  color: var(--primary-foreground);
+  background: var(--whatsapp);
+  transition: transform .25s;
+
+  &:hover {
+    transform: translateY(-2px);
+  }
 }
+
 @utility btn-glass {
-  display: inline-flex; align-items: center; gap: .5rem; border-radius: 9999px;
-  padding: .85rem 1.6rem; font-weight: 700; color: var(--navy-foreground);
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  border-radius: 9999px;
+  padding: .85rem 1.6rem;
+  font-weight: 700;
+  color: var(--navy-foreground);
   background: color-mix(in oklab, var(--navy-foreground) 14%, transparent);
   border: 1px solid color-mix(in oklab, var(--navy-foreground) 35%, transparent);
-  backdrop-filter: blur(10px); transition: background .25s;
-  &:hover { background: color-mix(in oklab, var(--navy-foreground) 24%, transparent); }
+  backdrop-filter: blur(10px);
+  transition: background .25s;
+
+  &:hover {
+    background: color-mix(in oklab, var(--navy-foreground) 24%, transparent);
+  }
 }
+
 @utility btn-outline-navy {
-  display: inline-flex; align-items: center; gap: .5rem; border-radius: 9999px;
-  padding: .7rem 1.3rem; font-weight: 700; color: var(--navy);
-  border: 2px solid var(--navy); transition: all .25s;
-  &:hover { background: var(--navy); color: var(--navy-foreground); }
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  border-radius: 9999px;
+  padding: .7rem 1.3rem;
+  font-weight: 700;
+  color: var(--navy);
+  border: 2px solid var(--navy);
+  transition: all .25s;
+
+  &:hover {
+    background: var(--navy);
+    color: var(--navy-foreground);
+  }
 }
-@utility bg-hero-overlay { background: var(--gradient-hero); }
-@utility shadow-card { box-shadow: var(--shadow-card); }
-@utility text-gradient-brand { background: var(--gradient-brand); -webkit-background-clip: text; background-clip: text; color: transparent; }
-@utility eyebrow { font-size: .75rem; font-weight: 800; letter-spacing: .25em; text-transform: uppercase; color: var(--primary); }
+
+@utility bg-hero-overlay {
+  background: var(--gradient-hero);
+}
+
+@utility shadow-card {
+  box-shadow: var(--shadow-card);
+}
+
+@utility text-gradient-brand {
+  background: var(--gradient-brand);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility eyebrow {
+  font-size: .75rem;
+  font-weight: 800;
+  letter-spacing: .25em;
+  text-transform: uppercase;
+  color: var(--primary);
+}
+
 @utility glass-card {
   background: color-mix(in oklab, var(--navy-foreground) 12%, transparent);
   border: 1px solid color-mix(in oklab, var(--navy-foreground) 25%, transparent);
-  backdrop-filter: blur(14px); color: var(--navy-foreground);
+  backdrop-filter: blur(14px);
+  color: var(--navy-foreground);
 }
-@utility perspective-stage { perspective: 1200px; }
-@utility preserve-3d { transform-style: preserve-3d; }
 
-@keyframes float-y { 0%,100% { transform: translateY(0) rotate(-2deg); } 50% { transform: translateY(-14px) rotate(2deg); } }
-@keyframes fade-up { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: none; } }
-@keyframes spin-slow { to { transform: rotateY(360deg); } }
-@utility animate-float { animation: float-y 6s ease-in-out infinite; }
-@utility animate-fade-up { animation: fade-up .9s cubic-bezier(.2,.7,.2,1) both; }
-@utility animate-spin-y { animation: spin-slow 18s linear infinite; }
+@utility perspective-stage {
+  perspective: 1200px;
+}
+
+@utility preserve-3d {
+  transform-style: preserve-3d;
+}
+
+@keyframes float-y {
+  0%, 100% {
+    transform: translateY(0) rotate(-2deg);
+  }
+  50% {
+    transform: translateY(-14px) rotate(2deg);
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes spin-slow {
+  to {
+    transform: rotateY(360deg);
+  }
+}
+
+@utility animate-float {
+  animation: float-y 6s ease-in-out infinite;
+}
+
+@utility animate-fade-up {
+  animation: fade-up .9s cubic-bezier(.2,.7,.2,1) both;
+}
+
+@utility animate-spin-y {
+  animation: spin-slow 18s linear infinite;
+}
+
+/* =========================================
+   GOOGLE TRANSLATE - CUSTOM UI FIX
+========================================= */
+
+/* Hide Google Translate top toolbar */
+.goog-te-banner-frame,
+.goog-te-banner-frame.skiptranslate,
+iframe.goog-te-banner-frame {
+  display: none !important;
+  visibility: hidden !important;
+  height: 0 !important;
+  border: none !important;
+}
+
+/* Prevent unwanted top spacing */
+html {
+  margin-top: 0 !important;
+}
+
+body {
+  top: 0 !important;
+}
+
+/* Hide Google Translate branding */
+.goog-logo-link,
+.goog-te-gadget > span,
+.goog-te-gadget img {
+  display: none !important;
+}
+
+.goog-te-gadget {
+  font-size: 0 !important;
+}
+
+/* Hide Google Translate tooltip */
+.goog-tooltip,
+.goog-tooltip:hover {
+  display: none !important;
+}
+
+/* Hide Google injected banner wrapper */
+body > .skiptranslate {
+  display: none !important;
+}
+
+/* Keep translated text styling clean */
+font[style] {
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
