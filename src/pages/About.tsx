@@ -28,7 +28,7 @@ export default function About() {
         <Reveal>
           <Tilt max={8}>
             <img
-              src={images.polonnaruwa}
+              src={images.nalinprofile}
               alt="Polonnaruwa ancient city"
               loading="lazy"
               width={1200}

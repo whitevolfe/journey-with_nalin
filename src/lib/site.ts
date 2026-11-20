@@ -6,11 +6,29 @@ import kandy from "@/assets/kandy.jpeg";
 import galle from "@/assets/galle.jpg";
 import whale from "@/assets/whale.jpg";
 import polonnaruwa from "@/assets/polonnaruwa.jpg";
+import nalinprofile from "@/assets/nalinprofile.jpg";
 
-// Hero background video. Place the file at public/videos/tropical_coast_aerial.mp4
+// New tour images
+import templeoftooth from "@/assets/templeoftooth.jpeg";
+import gregorylake from "@/assets/gregorylake.jpeg";
+
+// Hero background video
+// Place the file at public/videos/tropical_coast_aerial.mp4
 export const HERO_VIDEO = "/videos/tropical_coast_aerial.mp4";
 
-export const images = { sigiriya, safari, ella, beach, kandy, galle, whale, polonnaruwa };
+export const images = {
+  sigiriya,
+  safari,
+  ella,
+  beach,
+  kandy,
+  galle,
+  whale,
+  polonnaruwa,
+  templeoftooth,
+  gregorylake,
+  nalinprofile,
+};
 
 export const CONTACT = {
   phone: "+94 77 803 3914",
@@ -27,11 +45,21 @@ export function waLink(topic?: string) {
   const msg = topic
     ? `Hello Nalin! I'm interested in "${topic}". Could you please share more information and a quotation?`
     : DEFAULT_MSG;
+
   return `https://wa.me/94778033914?text=${encodeURIComponent(msg)}`;
 }
 
-export type Destination = { name: string; desc: string; img: string };
-export type Category = { id: string; title: string; items: Destination[] };
+export type Destination = {
+  name: string;
+  desc: string;
+  img: string;
+};
+
+export type Category = {
+  id: string;
+  title: string;
+  items: Destination[];
+};
 
 export const categories: Category[] = [
   {
@@ -115,8 +143,16 @@ export const categories: Category[] = [
     id: "hills",
     title: "Hill Country & Nature",
     items: [
-      { name: "Nuwara Eliya", desc: "'Little England' — cool climate and tea estates.", img: ella },
-      { name: "Ella", desc: "Nine Arch Bridge, Little Adam's Peak and misty views.", img: ella },
+      {
+        name: "Nuwara Eliya",
+        desc: "'Little England' — cool climate and tea estates.",
+        img: ella,
+      },
+      {
+        name: "Ella",
+        desc: "Nine Arch Bridge, Little Adam's Peak and misty views.",
+        img: ella,
+      },
       {
         name: "Scenic Mountain Journeys",
         desc: "One of the world's most beautiful train rides.",
@@ -133,24 +169,76 @@ export const categories: Category[] = [
     id: "beaches",
     title: "Beaches & Ocean",
     items: [
-      { name: "Mirissa Beach", desc: "Palm-fringed bay, sunsets and laid-back cafés.", img: beach },
+      {
+        name: "Mirissa Beach",
+        desc: "Palm-fringed bay, sunsets and laid-back cafés.",
+        img: beach,
+      },
       {
         name: "Whale Watching",
         desc: "See blue whales and dolphins off the south coast.",
         img: whale,
       },
-      { name: "Galle", desc: "Walk the ramparts of the historic Dutch fort.", img: galle },
-      { name: "Trincomalee Beach", desc: "Calm, clear waters on the east coast.", img: beach },
-      { name: "Marble Beach", desc: "A hidden turquoise cove near Trincomalee.", img: beach },
-      { name: "Hiriketiya Beach", desc: "A horseshoe bay loved by surfers.", img: beach },
-      { name: "Ahangama Beach", desc: "Stilt fishermen and gentle surf breaks.", img: galle },
-      { name: "Arugam Bay", desc: "Sri Lanka's legendary surf town.", img: beach },
-      { name: "Batticaloa Beach", desc: "Quiet lagoons and untouched coastline.", img: beach },
-      { name: "Hikkaduwa Beach", desc: "Coral reefs, turtles and lively evenings.", img: beach },
-      { name: "Tangalle", desc: "Wide, peaceful beaches in the deep south.", img: beach },
-      { name: "Bentota Beach", desc: "Golden sands and river water sports.", img: beach },
-      { name: "Snorkeling", desc: "Colourful reefs teeming with tropical fish.", img: whale },
-      { name: "Turtle Experiences", desc: "Visit turtle hatcheries along the coast.", img: beach },
+      {
+        name: "Galle",
+        desc: "Walk the ramparts of the historic Dutch fort.",
+        img: galle,
+      },
+      {
+        name: "Trincomalee Beach",
+        desc: "Calm, clear waters on the east coast.",
+        img: beach,
+      },
+      {
+        name: "Marble Beach",
+        desc: "A hidden turquoise cove near Trincomalee.",
+        img: beach,
+      },
+      {
+        name: "Hiriketiya Beach",
+        desc: "A horseshoe bay loved by surfers.",
+        img: beach,
+      },
+      {
+        name: "Ahangama Beach",
+        desc: "Stilt fishermen and gentle surf breaks.",
+        img: galle,
+      },
+      {
+        name: "Arugam Bay",
+        desc: "Sri Lanka's legendary surf town.",
+        img: beach,
+      },
+      {
+        name: "Batticaloa Beach",
+        desc: "Quiet lagoons and untouched coastline.",
+        img: beach,
+      },
+      {
+        name: "Hikkaduwa Beach",
+        desc: "Coral reefs, turtles and lively evenings.",
+        img: beach,
+      },
+      {
+        name: "Tangalle",
+        desc: "Wide, peaceful beaches in the deep south.",
+        img: beach,
+      },
+      {
+        name: "Bentota Beach",
+        desc: "Golden sands and river water sports.",
+        img: beach,
+      },
+      {
+        name: "Snorkeling",
+        desc: "Colourful reefs teeming with tropical fish.",
+        img: whale,
+      },
+      {
+        name: "Turtle Experiences",
+        desc: "Visit turtle hatcheries along the coast.",
+        img: beach,
+      },
       {
         name: "Madu River Boat Safari",
         desc: "Glide through mangroves and island temples.",
@@ -177,7 +265,11 @@ export const categories: Category[] = [
         desc: "Head straight from the airport to the Lion Rock.",
         img: sigiriya,
       },
-      { name: "Customized Round Tours", desc: "Your island trip, planned around you.", img: ella },
+      {
+        name: "Customized Round Tours",
+        desc: "Your island trip, planned around you.",
+        img: ella,
+      },
       {
         name: "Private Transportation",
         desc: "A comfortable private vehicle with your local guide.",
@@ -206,12 +298,7 @@ export const packages = [
     desc: "Jeep safaris in Sri Lanka's best national parks.",
     highlights: ["Minneriya", "Yala", "Udawalawe"],
   },
-  {
-    name: "Kandy and Nuwara Eliya Tour",
-    img: kandy,
-    desc: "The hill capital and cool tea country.",
-    highlights: ["Temple of the Tooth", "Tea estates", "Gregory Lake"],
-  },
+
   {
     name: "Ella Hill Country Adventure",
     img: ella,
@@ -235,6 +322,27 @@ export const packages = [
     img: whale,
     desc: "The whole island — culture, wildlife and beaches.",
     highlights: ["Culture", "Safari", "Beaches"],
+  },
+
+  // NEW PACKAGE 1 - KANDY TOUR
+  {
+    name: "Kandy Tour",
+    img: templeoftooth,
+    desc: "Discover the cultural capital of Sri Lanka, its sacred temples and beautiful hill-country scenery.",
+    highlights: [
+      "Temple of the Sacred Tooth Relic",
+      "Kandy Lake",
+      "Kandy City Tour",
+      "Cultural Experiences",
+    ],
+  },
+
+  // NEW PACKAGE 2 - NUWARA ELIYA TOUR
+  {
+    name: "Nuwara Eliya Tour",
+    img: gregorylake,
+    desc: "Explore the charming Little England of Sri Lanka, surrounded by tea plantations, cool weather and breathtaking mountain scenery.",
+    highlights: ["Gregory Lake", "Tea Plantations", "Waterfalls", "Nuwara Eliya City Tour"],
   },
 ];
 
