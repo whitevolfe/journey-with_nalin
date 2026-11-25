@@ -1,3 +1,4 @@
+
 import { useEffect } from "react";
 
 declare global {
@@ -17,7 +18,8 @@ export default function GoogleTranslateInit() {
       new window.google.translate.TranslateElement(
         {
           pageLanguage: "en",
-          includedLanguages: "en,de,ru,fr,nl,pl,it,es,sv,da,no,fi,cs,pt,ro",
+          includedLanguages:
+            "en,de,ru,fr,nl,pl,it,es,sv,da,no,fi,cs,pt,ro,hi,zh-CN,ar,ta",
           autoDisplay: false,
         },
         "google_translate_element",

@@ -16,6 +16,10 @@ const languages = [
   { code: "cs", name: "Czech", flag: "https://flagcdn.com/w40/cz.png" },
   { code: "pt", name: "Portuguese", flag: "https://flagcdn.com/w40/pt.png" },
   { code: "ro", name: "Romanian", flag: "https://flagcdn.com/w40/ro.png" },
+  { code: "hi", name: "Hindi", flag: "https://flagcdn.com/w40/in.png" },
+  { code: "zh-CN", name: "Chinese", flag: "https://flagcdn.com/w40/cn.png" },
+  { code: "ar", name: "Arabic", flag: "https://flagcdn.com/w40/sa.png" },
+  { code: "ta", name: "Tamil", flag: "https://flagcdn.com/w40/lk.png" },
 ];
 
 export default function GoogleTranslate({ inline = false }: { inline?: boolean }) {
