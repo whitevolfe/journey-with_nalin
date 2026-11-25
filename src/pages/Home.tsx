@@ -1,5 +1,7 @@
+import { useRef } from "react";
 import { Link } from "react-router-dom";
 import { lazy, Suspense } from "react";
+
 import {
   MessageCircle,
   Compass,
@@ -12,12 +14,22 @@ import {
   HeartHandshake,
   Instagram,
   ArrowRight,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
+
 import { images, categories, packages, waLink, CONTACT, HERO_VIDEO } from "@/lib/site";
+
 import { usePageMeta } from "@/hooks/use-page-meta";
 import { DestinationCard } from "@/components/DestinationCard";
 import { Tilt } from "@/components/Tilt";
 import { Reveal } from "@/components/Reveal";
+
+// Tripadvisor review images
+import tripadvisorreviewimg1 from "@/assets/tripadviserreviewimg1.png";
+import tripadvisorreviewimg2 from "@/assets/tripadviserreviewimg2.png";
+import tripadvisorreviewimg3 from "@/assets/tripadviserreviewimg3.png";
+import tripadvisorreviewimg4 from "@/assets/tripadviserreviewimg4.png";
 
 const Hero3D = lazy(() => import("@/components/Hero3D"));
 
@@ -32,17 +44,39 @@ const features = [
   { icon: HeartHandshake, t: "Personalized Customer Service" },
 ];
 
+// Tripadvisor review carousel images
+const reviewImages = [
+  tripadvisorreviewimg1,
+  tripadvisorreviewimg2,
+  tripadvisorreviewimg3,
+  tripadvisorreviewimg4,
+];
+
 export default function Home() {
+  const reviewsRef = useRef<HTMLDivElement>(null);
+
   usePageMeta(
     "Journey With Nalin — Discover Sri Lanka with a Local Expert",
     "Private Sri Lanka tours, wildlife safaris, beach holidays and airport transfers with Nalin — almost 10 years of experience and 100+ happy clients.",
   );
+
+  // Review carousel navigation
+  const scrollReviews = (direction: "left" | "right") => {
+    if (!reviewsRef.current) return;
+
+    reviewsRef.current.scrollBy({
+      left: direction === "left" ? -380 : 380,
+      behavior: "smooth",
+    });
+  };
+
   const featured = [
     categories[0].items[0],
     categories[1].items[2],
     categories[2].items[1],
     categories[3].items[0],
   ];
+
   return (
     <>
       {/* HERO with video + 3D */}
@@ -57,14 +91,18 @@ export default function Home() {
           playsInline
           aria-hidden="true"
         />
+
         <div className="bg-hero-overlay absolute inset-0" />
+
         <div className="relative mx-auto grid w-full max-w-7xl items-center gap-10 px-6 pb-20 pt-32 lg:grid-cols-[1.2fr_1fr]">
           <div>
             <p className="eyebrow animate-fade-up">Private Sri Lanka Tours</p>
+
             <h1 className="mt-4 animate-fade-up text-5xl font-semibold leading-[1.05] text-navy-foreground md:text-7xl">
               Discover the Beauty of <span className="text-gradient-brand italic">Sri Lanka</span>{" "}
               with Nalin
             </h1>
+
             <p
               className="mt-6 max-w-xl animate-fade-up text-lg text-navy-foreground/85"
               style={{ animationDelay: "150ms" }}
@@ -73,17 +111,22 @@ export default function Home() {
               to unforgettable wildlife safaris and breathtaking mountain landscapes, experience the
               island your way.
             </p>
+
             <div
               className="mt-8 flex animate-fade-up flex-wrap gap-4"
               style={{ animationDelay: "300ms" }}
             >
               <Link to="/destinations" className="btn-brand">
-                Explore Destinations <ArrowRight className="h-4 w-4" />
+                Explore Destinations
+                <ArrowRight className="h-4 w-4" />
               </Link>
+
               <a href={waLink()} target="_blank" rel="noreferrer" className="btn-glass">
-                <MessageCircle className="h-4 w-4" /> Book Your Journey – WhatsApp
+                <MessageCircle className="h-4 w-4" />
+                Book Your Journey – WhatsApp
               </a>
             </div>
+
             <div
               className="mt-10 flex animate-fade-up flex-wrap gap-3"
               style={{ animationDelay: "450ms" }}
@@ -99,6 +142,7 @@ export default function Home() {
               ))}
             </div>
           </div>
+
           <div className="relative hidden h-[520px] lg:block">
             <Suspense fallback={null}>
               <Hero3D />
@@ -120,6 +164,7 @@ export default function Home() {
                 height={912}
                 className="rounded-3xl shadow-card"
               />
+
               <div
                 className="absolute -bottom-6 -right-4 animate-float rounded-2xl bg-primary px-6 py-4 text-primary-foreground shadow-card"
                 style={{ transform: "translateZ(60px)" }}
@@ -130,19 +175,24 @@ export default function Home() {
             </div>
           </Tilt>
         </Reveal>
+
         <Reveal delay={150}>
           <p className="eyebrow">Meet Nalin</p>
+
           <h2 className="mt-3 text-4xl font-semibold md:text-5xl">
             Your Local Travel Partner in Sri Lanka
           </h2>
+
           <p className="mt-5 text-muted-foreground">
             Hello! I'm Nalin, your friendly local travel partner in Sri Lanka. With almost 10 years
             of experience in tourism and more than 100 satisfied clients, I am passionate about
             helping travelers discover the beauty, culture, wildlife and hidden treasures of my
             beautiful island.
           </p>
+
           <Link to="/about" className="btn-outline-navy mt-8">
-            More about Nalin <ArrowRight className="h-4 w-4" />
+            More about Nalin
+            <ArrowRight className="h-4 w-4" />
           </Link>
         </Reveal>
       </section>
@@ -153,14 +203,18 @@ export default function Home() {
           <Reveal className="flex flex-wrap items-end justify-between gap-4">
             <div>
               <p className="eyebrow">Explore Sri Lanka</p>
+
               <h2 className="mt-3 text-4xl font-semibold md:text-5xl">
                 Destinations & Experiences
               </h2>
             </div>
+
             <Link to="/destinations" className="btn-outline-navy">
-              View all <ArrowRight className="h-4 w-4" />
+              View all
+              <ArrowRight className="h-4 w-4" />
             </Link>
           </Reveal>
+
           <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
             {featured.map((d, i) => (
               <Reveal key={d.name} delay={i * 100}>
@@ -175,10 +229,12 @@ export default function Home() {
       <section className="mx-auto max-w-7xl px-6 py-24">
         <Reveal className="text-center">
           <p className="eyebrow">Why Travel With Nalin?</p>
+
           <h2 className="mt-3 text-4xl font-semibold md:text-5xl">
             Travel the island with confidence
           </h2>
         </Reveal>
+
         <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {features.map(({ icon: Icon, t }, i) => (
             <Reveal key={t} delay={i * 60}>
@@ -190,6 +246,7 @@ export default function Home() {
                   >
                     <Icon className="h-7 w-7" />
                   </div>
+
                   <h3 className="mt-5 text-lg font-semibold">{t}</h3>
                 </div>
               </Tilt>
@@ -204,14 +261,18 @@ export default function Home() {
           <Reveal className="flex flex-wrap items-end justify-between gap-4">
             <div>
               <p className="eyebrow">Popular Tour Packages</p>
+
               <h2 className="mt-3 text-4xl font-semibold text-navy-foreground md:text-5xl">
                 Journeys loved by travellers
               </h2>
             </div>
+
             <Link to="/tours" className="btn-brand">
-              All tours <ArrowRight className="h-4 w-4" />
+              All tours
+              <ArrowRight className="h-4 w-4" />
             </Link>
           </Reveal>
+
           <div className="mt-12 grid gap-6 md:grid-cols-3">
             {packages.slice(0, 3).map((p, i) => (
               <Reveal key={p.name} delay={i * 100}>
@@ -223,12 +284,15 @@ export default function Home() {
                       loading="lazy"
                       className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
                     />
+
                     <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/30 to-transparent" />
+
                     <div
                       className="absolute bottom-0 p-6"
                       style={{ transform: "translateZ(50px)" }}
                     >
                       <h3 className="text-2xl font-semibold text-navy-foreground">{p.name}</h3>
+
                       <p className="mt-1 text-sm text-navy-foreground/80">{p.desc}</p>
                     </div>
                   </div>
@@ -239,14 +303,85 @@ export default function Home() {
         </div>
       </section>
 
+      {/* TRIPADVISOR REVIEWS CAROUSEL */}
+      <section className="overflow-hidden bg-secondary py-24">
+        <div className="mx-auto max-w-7xl px-6">
+          <Reveal>
+            <div className="flex flex-wrap items-end justify-between gap-6">
+              <div>
+                <p className="eyebrow">Guest Experiences</p>
+
+                <h2 className="mt-3 text-4xl font-semibold md:text-5xl">
+                  Memories Shared by Our Travellers
+                </h2>
+
+                <p className="mt-4 max-w-2xl text-muted-foreground">
+                  Discover what our guests say about their unforgettable journeys around Sri Lanka
+                  with Journey With Nalin.
+                </p>
+              </div>
+
+              {/* Carousel navigation */}
+              <div className="flex gap-3">
+                <button
+                  type="button"
+                  onClick={() => scrollReviews("left")}
+                  aria-label="Previous reviews"
+                  className="flex h-12 w-12 items-center justify-center rounded-full border border-primary/20 bg-background transition hover:bg-primary hover:text-white"
+                >
+                  <ChevronLeft className="h-5 w-5" />
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => scrollReviews("right")}
+                  aria-label="Next reviews"
+                  className="flex h-12 w-12 items-center justify-center rounded-full border border-primary/20 bg-background transition hover:bg-primary hover:text-white"
+                >
+                  <ChevronRight className="h-5 w-5" />
+                </button>
+              </div>
+            </div>
+          </Reveal>
+
+          {/* Review image carousel */}
+          <div
+            ref={reviewsRef}
+            className="mt-12 flex snap-x snap-mandatory gap-6 overflow-x-auto scroll-smooth pb-6"
+            style={{ scrollbarWidth: "none" }}
+          >
+            {reviewImages.map((image, index) => (
+              <div
+                key={index}
+                className="w-[85%] shrink-0 snap-center overflow-hidden rounded-3xl border border-border bg-card p-3 shadow-card sm:w-[48%] lg:w-[31%]"
+              >
+                <img
+                  src={image}
+                  alt={`Tripadvisor guest review ${index + 1}`}
+                  loading="lazy"
+                  className="h-[380px] w-full rounded-2xl bg-white object-contain transition-transform duration-500 hover:scale-[1.02]"
+                />
+              </div>
+            ))}
+          </div>
+
+          <p className="mt-5 text-center text-sm text-muted-foreground">
+            Real travel experiences shared by our guests.
+          </p>
+        </div>
+      </section>
+
       {/* INSTAGRAM */}
       <section className="mx-auto max-w-5xl px-6 py-24 text-center">
         <Reveal>
           <Instagram className="mx-auto h-12 w-12 text-primary" />
+
           <h2 className="mt-4 text-4xl font-semibold md:text-5xl">Follow Our Journey</h2>
+
           <p className="mx-auto mt-4 max-w-xl text-muted-foreground">
             Watch travel reels, safari moments and island adventures with Nalin on Instagram.
           </p>
+
           <a href={CONTACT.instagram} target="_blank" rel="noreferrer" className="btn-brand mt-8">
             @journeywithnalin
           </a>

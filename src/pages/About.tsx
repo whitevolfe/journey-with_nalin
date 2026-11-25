@@ -29,7 +29,7 @@ export default function About() {
           <Tilt max={8}>
             <img
               src={images.nalinprofile}
-              alt="Polonnaruwa ancient city"
+              alt="Nalin profile picture"
               loading="lazy"
               width={1200}
               height={912}
